@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-interface FilterOptionsProps {
+type FilterOptionsProps = {
     onFilter: (filter: Filter) => void;
 }
 
-interface Filter {
-    species?: string;
-    age?: number;
+type Filter = {
+    species?: string
+    age?: number
 }
 
 const FilterOptions: React.FC<FilterOptionsProps> = ({ onFilter }) => {

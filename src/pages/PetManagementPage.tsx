@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Router, Routes, Route, Link, BrowserRouter, createBrowserRouter, useParams } from 'react-router-dom';
+import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import PetList from '../components/PetList';
 import PetForm from '../components/PetForm';
 import SearchBar from '../components/SearchBar';
@@ -7,14 +7,12 @@ import FilterOptions from '../components/FilterOptions';
 import EditPetForm from '../components/EditPetForm';
 import SimpleForm from '../components/SimpleForm';
 
-/* <Route path="/edit/:id" element={<PetList pets={[]} />} /> */
-interface Pet {
-    id: number;
-    name: string;
-    species: string;
-    age: number;
+type Pet = {
+    id: number
+    name: string
+    species: string
+    age: number
 }
-
 
 
 const PetManagementPage: React.FC = () => {

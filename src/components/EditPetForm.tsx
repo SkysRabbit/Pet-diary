@@ -18,8 +18,8 @@ interface EditProps {
 }
 
 const EditPetForm: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
-    const [loading, setLoading] = useState<boolean>(true);
+    const param = useParams<{ id: string }>();
+    const id = param.id;
     const [pet, setPet] = useState<Pet | null>(null);
     
     // useEffect(() => {
@@ -60,7 +60,7 @@ const EditPetForm: React.FC = () => {
     // 從 API 或其他來源獲取編輯的寵物資訊
     const initialPet = fetchPetDetails(parseInt(id));
     return (
-        <PetForm onSubmit={(pet) => console.log(pet)} initialPet={initialPet} />
+        <PetForm onSubmit={(pet) => alert(`${pet.name} submitted`)} initialPet={initialPet} />
     )
 }
 

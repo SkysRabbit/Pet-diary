@@ -4,22 +4,24 @@ import PetForm from './PetForm';
 import EditPetForm from './EditPetForm';
 import SearchBar from './SearchBar';
 
-interface Pet {
-    id: number;
-    name: string;
-    species: string;
-    age: number;
+type Pet = {
+    id: number
+    name: string
+    species: string
+    age: number
 }
 
-interface Props {
+type Filter = {
+    species?: string;
+    age?: number;
+}
+
+type Props = {
     pets: Pet[];
     searchQuery: string;
-    filter: {species?: string; age?: number};
+    filter: Filter;
 }
 
-interface EditProps {
-    editPet: Pet;
-}
 
 const PetList: React.FC<Props> = ({ pets, searchQuery, filter }) => {
     const [petList, setPetList] = useState<Pet[]>(pets);
@@ -35,7 +37,7 @@ const PetList: React.FC<Props> = ({ pets, searchQuery, filter }) => {
         if (filter.species) {
             filteredList = filteredList.filter(pet => pet.species === filter.species);
         }
-        if (filter.age) {
+        if (filter.age !== undefined) {
             filteredList = filteredList.filter(pet => pet.age === Number(filter.age));
         }
         setPetList(filteredList);
@@ -48,6 +50,8 @@ const PetList: React.FC<Props> = ({ pets, searchQuery, filter }) => {
 
     const handleDelete = (id: number) => {
         // Delete pet
+        const updatedPetList = petList.filter(pet => pet.id !== id);
+        setPetList(updatedPetList);
         alert(`Delete pet id ${id}`);
     };
 
@@ -73,7 +77,12 @@ const PetList: React.FC<Props> = ({ pets, searchQuery, filter }) => {
                                     >
                                         Edit
                                     </Link>
-                                    <button className="text-red-500 px-4 py-2 bg-slate-100 hover:text-red-700 hover:bg-slate-200 rounded shadow" onClick={() => handleDelete(pet.id)}>Delete</button>
+                                    <button 
+                                        className="text-red-500 px-4 py-2 bg-slate-100 hover:text-red-700 hover:bg-slate-200 rounded shadow" 
+                                        onClick={() => handleDelete(pet.id)}
+                                    >
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </li>

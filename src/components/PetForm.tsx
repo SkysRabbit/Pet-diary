@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-interface PetFormProps {
-    onSubmit: (pet: Pet) => void;
-    initialPet?: Pet;
+type PetFormProps = {
+    onSubmit: (pet: Pet) => void
+    initialPet?: Pet
 }
 
-interface Pet {
-    name: string;
-    species: string;
-    age: number;
+type Pet = {
+    name: string
+    species: string
+    age: number
 }
 
 const PetForm: React.FC<PetFormProps> = ({ onSubmit, initialPet }) => {
